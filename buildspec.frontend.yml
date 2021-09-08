@@ -24,7 +24,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - export BUCKET=`aws ssm get-parameter --name "$BUCKET_PARAMETER_NAME" --region us-east-1 | jq -r .Parameter.Value`
+      - export BUCKET=`aws ssm get-parameter --name "$BUCKET_PARAMETER_NAME" --region eu-west-3 | jq -r .Parameter.Value`
       - echo "Uploading build to $BUCKET ..."
       - aws s3 sync "$BUILD_DIR" "$BUCKET" --delete
       - echo "Build completed on `date`"
